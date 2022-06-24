@@ -12,7 +12,7 @@ const pool = mysql.createPool({
   database: "tiphunzire.com",
 });
 
-exports.Students = (req, res) => {
+exports.students = (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
     connection.query(
@@ -34,7 +34,7 @@ exports.Students = (req, res) => {
   });
 };
 
-exports.Expired = (req, res) => {
+exports.expired = (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
     connection.query(
@@ -54,7 +54,7 @@ exports.Expired = (req, res) => {
   });
 };
 
-exports.Admins = (req, res) => {
+exports.admins = (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
     connection.query(
@@ -74,7 +74,7 @@ exports.Admins = (req, res) => {
   });
 };
 
-exports.SaveUser = (req, res) => {
+exports.create = (req, res) => {
   const {
     Name,
     UserName,
@@ -107,7 +107,7 @@ exports.SaveUser = (req, res) => {
   });
 };
 
-exports.GetById = (req, res) => {
+exports.getById = (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
     connection.query(
@@ -130,7 +130,7 @@ exports.GetById = (req, res) => {
   });
 };
 
-exports.UpdateUser = (req, res) => {
+exports.update = (req, res) => {
   let searchTerm = req.body.UserId;
   const {
     Name,
@@ -174,7 +174,7 @@ exports.UpdateUser = (req, res) => {
   });
 };
 
-exports.Delete = (req, res) => {
+exports.delete = (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
     connection.query(
@@ -194,7 +194,7 @@ exports.Delete = (req, res) => {
   });
 };
 
-exports.Signin = (req, res) => {
+exports.signin = (req, res) => {
   let username = req.body.username;
   let password = md5(req.body.password);
   pool.getConnection((err, connection) => {
