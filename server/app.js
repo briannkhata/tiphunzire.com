@@ -32,7 +32,7 @@ pool.getConnection((err, connection) => {
 const user = require("./routes/User");
 const grade = require("./routes/Grade");
 
-app.use("/api/user/", user);
-app.use("/api/grade/", grade);
+app.use("/api/v1/user/", user);
+app.use("/api/v1/grade/", grade);
 
 app.listen(port, () => console.log(`The App is Listening on port ${port}!`));

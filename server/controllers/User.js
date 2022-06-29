@@ -21,7 +21,7 @@ exports.students = (req, res) => {
         connection.release();
         if (err) {
           res.status(400).json({
-            error: err.message
+            error: err.message,
           });
           return;
         }
@@ -221,8 +221,8 @@ exports.signin = (req, res) => {
       }
     );
   });
-}
-exports.Logout = (req, res) => {
+};
+exports.logout = (req, res) => {
   req.session.destroy(() => {
     req.logout();
     res.json({
