@@ -1,1 +1,7 @@
-<h1>Expired Accounts</h1>;
+import React, { Component } from "react";
+
+export default class ExpiredList extends Component {
+  render() {
+    return <div>ExpiredList</div>;
+  }
+}
