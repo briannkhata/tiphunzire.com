@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
 import Register from "./Register";
+import Dashboard from "./Users/Dashboard";
 
 export default class Login extends Component {
   render() {
@@ -101,11 +104,12 @@ export default class Login extends Component {
                           >
                             Login
                           </button>
+                          <Link to="/Dashboard">Login</Link>
                         </div>
                         <div className="col-12">
                           <p className="small mb-0">
-                            Don't have Account?{" "}
-                            <a href="pages-register.html">Create An Account</a>
+                            Don't have Account? &nbsp;
+                            <Link to="/register">Create An Account</Link>
                           </p>
                         </div>
                       </form>
