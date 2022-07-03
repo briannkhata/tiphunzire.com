@@ -33,6 +33,12 @@ export default class Menu extends Component {
                 data-bs-parent="#sidebar-nav"
               >
                 <li>
+                  <Link to="/createUser">
+                    <i className="bi bi-circle"></i>
+                    <span>Create User</span>
+                  </Link>
+                </li>
+                <li>
                   <Link to="/admins">
                     <i className="bi bi-circle"></i>
                     <span>Admin List</span>

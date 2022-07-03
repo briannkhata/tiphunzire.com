@@ -20,15 +20,9 @@ exports.students = (req, res) => {
       (err, rows) => {
         connection.release();
         if (err) {
-          res.status(400).json({
-            error: err.message,
-          });
-          return;
+          res.json(err);
         }
-        res.json({
-          message: "success",
-          data: rows,
-        });
+        res.json(rows);
       }
     );
   });
@@ -42,12 +36,9 @@ exports.expired = (req, res) => {
       (err, rows) => {
         connection.release();
         if (err) {
-          console.log(err);
+          res.json(err);
         } else {
-          res.json({
-            message: "success",
-            data: rows,
-          });
+          res.json(rows);
         }
       }
     );
@@ -62,12 +53,9 @@ exports.admins = (req, res) => {
       (err, rows) => {
         connection.release();
         if (err) {
-          console.log(err);
+          res.json(err);
         } else {
-          res.json({
-            message: "success",
-            data: rows,
-          });
+          res.json(rows);
         }
       }
     );
@@ -95,12 +83,9 @@ exports.create = (req, res) => {
       (err, rows) => {
         connection.release();
         if (err) {
-          console.log(err);
+          res.json(err);
         } else {
-          res.json({
-            message: "Ok",
-            data: rows,
-          });
+          res.json(rows);
         }
       }
     );
@@ -116,14 +101,9 @@ exports.getById = (req, res) => {
       (err, rows) => {
         connection.release();
         if (err) {
-          res.json({
-            message: "Error",
-          });
+          res.json(err);
         } else {
-          res.json({
-            message: "Ok",
-            data: rows,
-          });
+          res.json(rows);
         }
       }
     );
@@ -131,22 +111,13 @@ exports.getById = (req, res) => {
 };
 
 exports.update = (req, res) => {
-  let searchTerm = req.body.UserId;
-  const {
-    Name,
-    UserName,
-    PassWord,
-    Email,
-    Phone,
-    ClassId,
-    PlanId,
-    Photo,
-    Role,
-  } = req.body;
+  let UserId = req.body.UserId;
+  const { Name, UserName, PassWord, Email, Phone, ClassId, PlanId, Dob, Role } =
+    req.body;
   pool.getConnection((err, connection) => {
     if (err) throw err;
     connection.query(
-      "INSERT INTO Users SET Name = ?, UserName = ?,Phone = ?,Email = ?,ClassId = ?,PlanId = ?,Photo = ?,PassWord = ?,Role = ? WHERE UserId = ?",
+      "UPDATE Users SET Name = ?, UserName = ?,Phone = ?,Email = ?,ClassId = ?,PlanId = ?,Dob = ?,PassWord = ?,Role = ? WHERE UserId = ?",
       [
         Name,
         UserName,
@@ -155,19 +126,16 @@ exports.update = (req, res) => {
         ClassId,
         PlanId,
         Role,
-        Photo,
+        Dob,
         PassWord,
         UserId,
       ],
       (err, rows) => {
         connection.release();
         if (err) {
-          console.log(err);
+          res.json(err);
         } else {
-          res.json({
-            message: "Ok",
-            data: rows,
-          });
+          res.json(rows);
         }
       }
     );
@@ -178,16 +146,14 @@ exports.delete = (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
     connection.query(
-      "DELETE FROM Users WHERE UserId = ?",
+      "UPDATE Users SET Deleted = 1 WHERE UserId = ?",
       [req.params.UserId],
       (err) => {
         connection.release();
         if (err) {
-          console.log(err);
+          res.json(err);
         } else {
-          res.json({
-            message: "Ok",
-          });
+          res.json("success");
         }
       }
     );

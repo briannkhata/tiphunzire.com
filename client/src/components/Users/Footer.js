@@ -8,12 +8,12 @@ export default class Footer extends Component {
           <div class="copyright">
             &copy; Copyright{" "}
             <strong>
-              <span>NiceAdmin</span>
+              <span>Tiphunzire.com</span>
             </strong>
             . All Rights Reserved
           </div>
           <div class="credits">
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            Powered by <a href="#">Infocus MW</a>
           </div>
         </footer>
       </div>
