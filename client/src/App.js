@@ -5,6 +5,10 @@ import { BrowserRouter } from "react-router-dom";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Dashboard from "./components/Users/Dashboard";
+import AdminList from "./components/Users/AdminList";
+import ExpiredList from "./components/Users/ExpiredList";
+import CreateUser from "./components/Users/CreateUser";
+import StudentList from "./components/Users/StudentList";
 
 export default class App extends Component {
   render() {
@@ -15,6 +19,10 @@ export default class App extends Component {
             <Route exact path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/admins" element={<AdminList />} />
+            <Route path="/students" element={<StudentList />} />
+            <Route path="/expired" element={<ExpiredList />} />
+            <Route path="/createUser" element={<CreateUser />} />
           </Routes>
         </BrowserRouter>
       </div>
