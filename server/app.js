@@ -9,9 +9,11 @@ const app = express();
 app.use(cors());
 
 // Configuring body parser middleware
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+app.use(
+  bodyParser.urlencoded({
+    extended: false,
+  })
+);
 app.use(bodyParser.json());
 
 //db connection
@@ -31,8 +33,9 @@ pool.getConnection((err, connection) => {
 //Load routes
 const user = require("./routes/User");
 const grade = require("./routes/Grade");
+const plan = require("./routes/Plan");
 
 app.use("/api/v1/user/", user);
 app.use("/api/v1/grade/", grade);
-
+app.use("/api/v1/plan/", plan);
 app.listen(port, () => console.log(`The App is Listening on port ${port}!`));

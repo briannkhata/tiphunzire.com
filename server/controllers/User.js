@@ -78,7 +78,7 @@ exports.create = (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
     connection.query(
-      "INSERT INTO Users SET Name = ?, UserName = ?,Phone = ?,Email = ?,ClassId = ?,PlanId = ?,Photo = ?,PassWord = ?,Role = ?",
+      "INSERT INTO Users Name = ?, UserName = ?,Phone = ?,Email = ?,ClassId = ?,PlanId = ?,Photo = ?,PassWord = ?,Role = ?",
       [Name, UserName, Phone, Email, ClassId, PlanId, Role, Photo, PassWord],
       (err, rows) => {
         connection.release();

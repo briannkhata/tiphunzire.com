@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import Register from "./Register";
-import Dashboard from "./Users/Dashboard";
-
 export default class Login extends Component {
   render() {
     return (

@@ -11,10 +11,10 @@ const pool = mysql.createPool({
   database: "tiphunzire.com",
 });
 
-exports.grades = (req, res) => {
+exports.plans = (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
-    connection.query("SELECT * FROM grades", (err, rows) => {
+    connection.query("SELECT * FROM plans", (err, rows) => {
       connection.release();
       if (err) {
         res.json(err);
@@ -28,8 +28,8 @@ exports.create = (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
     connection.query(
-      "INSERT INTO grades SET Grade = ? ",
-      [req.body.Grade],
+      "INSERT INTO plans SET plan = ? ",
+      [req.body.plan],
       (err, rows) => {
         connection.release();
         if (err) {
@@ -49,8 +49,8 @@ exports.getById = (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
     connection.query(
-      "SELECT * FROM grades WHERE gradeId = ?",
-      [req.params.gradeId],
+      "SELECT * FROM plans WHERE planId = ?",
+      [req.params.planId],
       (err, rows) => {
         connection.release();
         if (err) {
@@ -69,12 +69,12 @@ exports.getById = (req, res) => {
 };
 
 exports.update = (req, res) => {
-  const { grade, gradeId } = req.body;
+  const { plan, planId } = req.body;
   pool.getConnection((err, connection) => {
     if (err) throw err;
     connection.query(
-      "INSERT INTO grades SET grade = ? WHERE gradeId = ?",
-      [grade, gradeId],
+      "INSERT INTO plans SET plan = ? WHERE planId = ?",
+      [plan, planId],
       (err, rows) => {
         connection.release();
         if (err) {
@@ -94,8 +94,8 @@ exports.delete = (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
     connection.query(
-      "DELETE FROM grades WHERE GradeId = ?",
-      [req.params.gradeId],
+      "DELETE FROM plans WHERE planId = ?",
+      [req.params.planId],
       (err) => {
         connection.release();
         if (err) {

@@ -1,16 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import axios from "axios";
 import Menu from "./Menu";
 import Header from "./Header";
 import Footer from "./Footer";
 
 const StudentList = () => {
-  const [users, setUsers] = useState([]);
+  const [students, setStudents] = useState([]);
+
+  const url = "http://localhost:5000/api/v1/user/students";
+  //const url2 = `http://localhost:5000/api/v1/user/delete/${UserId}`;
+
+  const getStudents = async () => {
+    const res = await axios.get(url);
+    setStudents(res.data);
+  };
+
+  /*const deleteUser = async (UserId) => {
+    await axios.delete(url2);
+    getStudents();
+  };*/
+
   useEffect(() => {
-    axios.get("http://localhost:5000/api/v1/user/students/").then((res) => {
-      setUsers(res.data);
-    });
+    getStudents();
+    //deleteUser();
   }, []);
   return (
     <div>
@@ -38,7 +52,6 @@ const StudentList = () => {
                   <table className="table datatable">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Username</th>
                         <th scope="col">Dob</th>
@@ -49,24 +62,30 @@ const StudentList = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {users.map((user, index) => (
-                        <tr key={index}>
-                          <th scope="row">{index + 1}</th>
-                          <td>{user.Name}</td>
-                          <td>{user.Username}</td>
-                          <td>{user.Dob}</td>
-                          <td>{user.ClassId}</td>
-                          <td>{user.PlanId}</td>
-                          <td>{user.DateAdded}</td>
+                      {students.map((student, index) => (
+                        <tr key={student.UserId}>
+                          <td>
+                            <i className="fa fa-user-circle"></i> &nbsp;
+                            {student.Name}
+                          </td>
+                          <td>{student.Username}</td>
+                          <td>{student.Dob}</td>
+                          <td>{student.ClassId}</td>
+                          <td>{student.PlanId}</td>
+                          <td>{student.DateAdded}</td>
                           <td>
                             <div className="btn-group">
                               <Link
-                                to={`/editUser/${user.UserId}`}
+                                to={`/addEdit/${student.UserId}`}
                                 className="btn btn-sm btn-info"
                               >
                                 Edit
                               </Link>
-                              <button className="btn btn-sm btn-warning">
+
+                              <button
+                                /*onClick={() => deleteUser(student.UserId)}*/
+                                className="btn btn-sm btn-warning"
+                              >
                                 De-Activate
                               </button>
                             </div>
