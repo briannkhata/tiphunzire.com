@@ -16,7 +16,7 @@ export default class Login extends Component {
                       class="logo d-flex align-items-center w-auto"
                     >
                       <img src="assets/img/logo.png" alt="" />
-                      <span class="d-none d-lg-block">Tiphunzire.com</span>
+                      <span class="d-none d-lg-block">Tiphunzire</span>
                     </a>
                   </div>
 
